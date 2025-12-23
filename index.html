@@ -1,16 +1,22 @@
-<button onclick="checkCookies()">Check document.cookie</button>
+<button onclick="testCamera()">Test Camera</button>
+<button onclick="testMicrophone()">Test Microphone</button>
 
 <script>
-  function checkCookies() {
-    try {
-      if (document.cookie && document.cookie.length > 0) {
-        alert("Cookies visible:\n\n" + document.cookie);
-      } else {
-        alert("No cookies accessible via document.cookie");
-      }
-    } catch (e) {
-      alert("Cookie access blocked:\n" + e);
-    }
+async function testCamera() {
+  try {
+    await navigator.mediaDevices.getUserMedia({ video: true });
+    alert("Camera access granted!");
+  } catch (e) {
+    alert("Camera access blocked / denied: " + e.message);
   }
-</script>
+}
 
+async function testMicrophone() {
+  try {
+    await navigator.mediaDevices.getUserMedia({ audio: true });
+    alert("Microphone access granted!");
+  } catch (e) {
+    alert("Microphone access blocked / denied: " + e.message);
+  }
+}
+</script>
