@@ -2,28 +2,19 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>z</title>
+  <title>a a</title>
 </head>
 <body>
-  <h2>z/h2>
+  <h2>aa Taa</h2>
 
-  <button onclick="runTest()">Call getAccessToken()</button>
+  <button onclick="testSOP()">Test SOP</button>
 
   <script>
-    function runTest() {
-      try {
-        if (typeof Android !== "undefined" &&
-            typeof Android.getAccessToken === "function") {
-
-          var token = Android.getAccessToken();
-          alert("getAccessToken() returned:\n\n" + token);
-
-        } else {
-          alert("Android.getAccessToken is NOT accessible");
-        }
-      } catch (e) {
-        alert("Error calling getAccessToken:\n" + e);
-      }
+    function testSOP() {
+      fetch("file:///android_asset/test.txt")
+        .then(r => r.text())
+        .then(t => alert("SOP BROKEN: " + t))
+        .catch(e => alert("SOP enforced. Access blocked."));
     }
   </script>
 </body>
